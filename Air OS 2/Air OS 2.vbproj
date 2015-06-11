@@ -95,11 +95,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Booter.vb">
+    <Compile Include="BootLogin\Booter.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Booter.Designer.vb">
+    <Compile Include="BootLogin\Booter.Designer.vb">
       <DependentUpon>Booter.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BootLogin\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BootLogin\Login.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -124,8 +130,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Booter.resx">
+    <EmbeddedResource Include="BootLogin\Booter.resx">
       <DependentUpon>Booter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BootLogin\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\material.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
