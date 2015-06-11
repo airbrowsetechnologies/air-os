@@ -11,6 +11,7 @@ Public Class Booter
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Refresh()
         If Me.BackColor.R < 100 Then
             Me.BackColor = Color.FromArgb(Me.BackColor.R + 1, Me.BackColor.G + 1, Me.BackColor.B + 1)
             If ProgressBar1.Value < ProgressBar1.Maximum Then
@@ -71,10 +72,10 @@ Public Class Booter
                         End If
                     End If
                 End If
-                Else
-                    Label1.Text = "Loading apps and settings... - " + Math.Truncate((ProgressBar1.Value)).ToString + "%"
+            Else
+                Label1.Text = "Loading apps and settings... - " + Math.Truncate((ProgressBar1.Value)).ToString + "%"
 
-                End If
+            End If
         Else
             Console.WriteLine("Booting complete...")
             Console.WriteLine("Showing login screen...")
