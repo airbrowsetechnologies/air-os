@@ -52,7 +52,13 @@ Public Class Booter
                 If Not Directory.Exists(AirOS.OSDataPath + "\users\admin") Then
                     Directory.CreateDirectory(AirOS.OSDataPath + "\users\admin")
                     File.WriteAllText(AirOS.OSDataPath + "\users\admin\pw.txt", Functions.Encrypt(""))
-                    My.Resources.person.Save(AirOS.OSDataPath + "\users\admin\img.txt")
+                    File.WriteAllText(AirOS.OSDataPath + "\users\admin\name.txt", "Administrator")
+
+                    File.WriteAllText(AirOS.OSDataPath + "\users\admin\settings.txt", "")
+
+                    'MAKE SURE TO ADD SETTINGS
+
+                    My.Resources.person.Save(AirOS.OSDataPath + "\users\admin\img.png", Imaging.ImageFormat.Png)
                 End If
             ElseIf ProgressBar1.Value <= 66 Then
                 Label1.Text = "Loading components and files... - " + Math.Truncate((ProgressBar1.Value)).ToString + "%"
