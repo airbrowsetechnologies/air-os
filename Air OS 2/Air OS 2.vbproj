@@ -195,6 +195,12 @@
     <None Include="Resources\person.png" />
     <None Include="Resources\material.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AirOSAppFramework\AirOSAppFramework.vbproj">
+      <Project>{03e1a506-77ed-4128-a1a8-ee49f623d24b}</Project>
+      <Name>AirOSAppFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
