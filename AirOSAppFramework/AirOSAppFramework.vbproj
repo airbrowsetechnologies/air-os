@@ -110,8 +110,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="PipesClient.vb" />
+    <Compile Include="PipeServer.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AirOSForm.resx">
+      <DependentUpon>AirOSForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

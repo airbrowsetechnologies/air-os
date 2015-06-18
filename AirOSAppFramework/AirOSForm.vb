@@ -11,19 +11,36 @@ Public Class AirOSForm
         ControlContainer.Dock = DockStyle.Fill
         ControlContainer.Padding = New Padding(1)
         ControlContainer.BorderStyle = BorderStyle.None
+        ControlContainer.Font = New Font("Segoe UI", 10)
         TitleBar.Invalidate()
         ControlContainer.Invalidate()
         MyBase.OnHandleCreated(e)
     End Sub
 
+    Protected Overrides Sub OnSizeChanged(e As EventArgs)
+        MyBase.OnSizeChanged(e)
+        If Me.DesignMode Then
+            StartingSize = Size
+        End If
+    End Sub
 
-    Private CloseButton As New ExButton
-    Private MaxRestoreButton As New ExButton
-    Private MinimizeButton As New ExButton
+
+    Private WithEvents CloseButton As New ExButton
+    Private WithEvents MaxRestoreButton As New ExButton
+    Private WithEvents MinimizeButton As New ExButton
     Private WithEvents TitleBar As New Panel
     Public WithEvents ControlContainer As New ControlContainer
 
+    Private IsInAirOS As Boolean = False
+    Private StartingSize As Size
     Public Sub New()
+        InitializeComponent()
+        StartingSize = Size
+        If Environment.GetCommandLineArgs.Length > 0 Then
+            If Environment.GetCommandLineArgs(0) = "airos" Then
+                IsInAirOS = True
+            End If
+        End If
         Dim exs = {MinimizeButton, MaxRestoreButton, CloseButton}
         For i = 0 To exs.Length - 1
             exs(i).ButtonScheme = ExButton.ButtonType.Primary
@@ -35,8 +52,11 @@ Public Class AirOSForm
             TitleBar.Controls.Add(exs(i))
         Next
         CloseButton.Image = My.Resources.winclose
+        CloseButton.Width = 36
         MaxRestoreButton.Image = My.Resources.winmaximize
+        MaxRestoreButton.Width = 32
         MinimizeButton.Image = My.Resources.winminimize
+        MinimizeButton.Width = 32
         TitleBar.Dock = DockStyle.Top
         TitleBar.Height = 29
         TitleBar.Padding = New Padding(1, 1, 1, 0)
@@ -50,11 +70,63 @@ Public Class AirOSForm
         SetStyle(ControlStyles.ContainerControl, False)
     End Sub
 
+    Public Property AppSize As Size
+        Get
+            Return StartingSize
+        End Get
+        Set(value As Size)
+            StartingSize = value
+            If Me.DesignMode Then
+                Size = value
+            End If
+        End Set
+    End Property
+
+#Region "Drag"
+    Dim startpt As New Point(0)
+    Dim ismousedown As Boolean = False
+    Private Sub TitleBar_MouseDown(sender As Object, e As MouseEventArgs) Handles TitleBar.MouseDown
+        ismousedown = True
+        startpt = TitleBar.PointToClient(Control.MousePosition)
+    End Sub
+
+    Private Sub TitleBar_MouseMove(sender As Object, e As MouseEventArgs) Handles TitleBar.MouseMove
+        If ismousedown Then
+            WindowState = FormWindowState.Normal
+            Size = StartingSize
+            Location = New Point(Control.MousePosition.X - startpt.X, Control.MousePosition.Y - startpt.Y)
+        End If
+    End Sub
+
+    Private Sub TitleBar_MouseUp(sender As Object, e As MouseEventArgs) Handles TitleBar.MouseUp
+        ismousedown = False
+        If IsInAirOS Then
+            If Control.MousePosition.Y < 1 Then
+                WindowState = FormWindowState.Maximized
+            End If
+        Else
+            If Control.MousePosition.Y < 1 Then
+                WindowState = FormWindowState.Maximized
+            End If
+        End If
+
+        If Control.MousePosition.X < 1 Then
+            Size = New Size(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.WorkingArea.Height)
+            Location = New Point(0, 0)
+        End If
+        If Control.MousePosition.X > My.Computer.Screen.Bounds.Width - 2 Then
+            Size = New Size(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.WorkingArea.Height)
+            Location = New Point(My.Computer.Screen.Bounds.Width / 2, 0)
+        End If
+
+    End Sub
+#End Region
+
 
 
     Private Sub TitleBar_Paint(sender As Object, e As PaintEventArgs) Handles TitleBar.Paint
         e.Graphics.DrawImage(Functions.ResizeImage(Icon.ToBitmap, New Size(23, 23)), New Point(3, 3))
-        e.Graphics.DrawRectangle(SystemPens.HotTrack, New Rectangle(0, 0, TitleBar.Width - 1, TitleBar.Height))
+        '  e.Graphics.DrawRectangle(SystemPens.HotTrack, New Rectangle(0, 0, TitleBar.Width - 1, TitleBar.Height))
         Using s = New StringFormat, f = New Font("Segoe UI", 11)
             s.Alignment = StringAlignment.Near
             s.LineAlignment = StringAlignment.Center
@@ -64,7 +136,38 @@ Public Class AirOSForm
     End Sub
 
     Private Sub ControlContainer_Paint(sender As Object, e As PaintEventArgs) Handles ControlContainer.Paint
-        e.Graphics.DrawRectangle(Pens.DodgerBlue, New Rectangle(0, -1, ControlContainer.Width - 1, ControlContainer.Height + 1))
+        e.Graphics.DrawRectangle(Pens.DodgerBlue, New Rectangle(0, -1, ControlContainer.Width - 1, ControlContainer.Height))
+    End Sub
+
+    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
+        Close()
+    End Sub
+
+    Private Sub MinimizeButton_Click(sender As Object, e As EventArgs) Handles MinimizeButton.Click
+        WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub MaxRestoreButton_Click(sender As Object, e As EventArgs) Handles MaxRestoreButton.Click
+        If WindowState = FormWindowState.Normal Then
+            WindowState = FormWindowState.Maximized
+        Else
+            WindowState = FormWindowState.Normal
+        End If
+    End Sub
+
+    Private Sub AirOSForm_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged, Me.LocationChanged
+        Invalidate()
+    End Sub
+
+    Private Sub InitializeComponent()
+        Me.SuspendLayout()
+        '
+        'AirOSForm
+        '
+        Me.ClientSize = New System.Drawing.Size(462, 535)
+        Me.Name = "AirOSForm"
+        Me.ResumeLayout(False)
+
     End Sub
 End Class
 

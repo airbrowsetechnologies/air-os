@@ -115,6 +115,9 @@
     </Compile>
     <Compile Include="Helpers\Functions.vb" />
     <Compile Include="Helpers\MenuRenderer.vb" />
+    <Compile Include="Helpers\OSAppBase.vb" />
+    <Compile Include="Helpers\PipesClient.vb" />
+    <Compile Include="Helpers\PipeServer.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -200,6 +203,9 @@
       <Project>{03e1a506-77ed-4128-a1a8-ee49f623d24b}</Project>
       <Name>AirOSAppFramework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Desktop\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
