@@ -22,16 +22,17 @@ Partial Class Login
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Login))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.incorrect = New System.Windows.Forms.Label()
+        Me.ExButton1 = New Air_OS2.ExButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.version = New System.Windows.Forms.Label()
-        Me.incorrect = New System.Windows.Forms.Label()
-        Me.ExButton1 = New Air_OS2.ExButton()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +77,49 @@ Partial Class Login
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(559, 479)
         Me.Panel2.TabIndex = 1
+        '
+        'incorrect
+        '
+        Me.incorrect.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.incorrect.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
+        Me.incorrect.ForeColor = System.Drawing.Color.OrangeRed
+        Me.incorrect.Location = New System.Drawing.Point(9, 281)
+        Me.incorrect.Name = "incorrect"
+        Me.incorrect.Size = New System.Drawing.Size(538, 22)
+        Me.incorrect.TabIndex = 4
+        Me.incorrect.Text = "Incorrect username or password!"
+        Me.incorrect.Visible = False
+        '
+        'ExButton1
+        '
+        Me.ExButton1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ExButton1.ButtonScheme = Air_OS2.ExButton.ButtonType.Primary
+        Me.ExButton1.CenterImage = False
+        Me.ExButton1.CornerRadius = 0
+        Me.ExButton1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ExButton1.Font = New System.Drawing.Font("Segoe UI", 16.0!)
+        Me.ExButton1.ForeColor = System.Drawing.Color.White
+        Me.ExButton1.HoverBorder = System.Drawing.Color.Transparent
+        Me.ExButton1.HoverColor1 = System.Drawing.Color.FromArgb(CType(CType(65, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.ExButton1.HoverColor2 = System.Drawing.Color.FromArgb(CType(CType(65, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.ExButton1.IsExtension = False
+        Me.ExButton1.Location = New System.Drawing.Point(13, 421)
+        Me.ExButton1.MouseDownBorder = System.Drawing.Color.Transparent
+        Me.ExButton1.MouseDownColor1 = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(118, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.ExButton1.MouseDownColor2 = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(118, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.ExButton1.Name = "ExButton1"
+        Me.ExButton1.NormalBorder = System.Drawing.Color.Transparent
+        Me.ExButton1.NormalColor1 = System.Drawing.Color.DodgerBlue
+        Me.ExButton1.NormalColor2 = System.Drawing.Color.DodgerBlue
+        Me.ExButton1.ScaleImageDown = True
+        Me.ExButton1.Size = New System.Drawing.Size(534, 45)
+        Me.ExButton1.TabIndex = 3
+        Me.ExButton1.Text = "Sign in"
+        Me.ExButton1.TextCentered = True
+        Me.ExButton1.UserPainted = False
+        Me.ExButton1.UseVisualStyleBackColor = True
         '
         'PictureBox1
         '
@@ -140,49 +184,6 @@ Partial Class Login
         Me.version.Text = "Air OS"
         Me.version.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
-        'incorrect
-        '
-        Me.incorrect.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.incorrect.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
-        Me.incorrect.ForeColor = System.Drawing.Color.OrangeRed
-        Me.incorrect.Location = New System.Drawing.Point(9, 281)
-        Me.incorrect.Name = "incorrect"
-        Me.incorrect.Size = New System.Drawing.Size(538, 22)
-        Me.incorrect.TabIndex = 4
-        Me.incorrect.Text = "Incorrect username or password!"
-        Me.incorrect.Visible = False
-        '
-        'ExButton1
-        '
-        Me.ExButton1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ExButton1.ButtonScheme = Air_OS2.ExButton.ButtonType.Primary
-        Me.ExButton1.CenterImage = False
-        Me.ExButton1.CornerRadius = 0
-        Me.ExButton1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.ExButton1.Font = New System.Drawing.Font("Segoe UI", 16.0!)
-        Me.ExButton1.ForeColor = System.Drawing.Color.White
-        Me.ExButton1.HoverBorder = System.Drawing.Color.Transparent
-        Me.ExButton1.HoverColor1 = System.Drawing.Color.FromArgb(CType(CType(65, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.ExButton1.HoverColor2 = System.Drawing.Color.FromArgb(CType(CType(65, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.ExButton1.IsExtension = False
-        Me.ExButton1.Location = New System.Drawing.Point(13, 421)
-        Me.ExButton1.MouseDownBorder = System.Drawing.Color.Transparent
-        Me.ExButton1.MouseDownColor1 = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(118, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.ExButton1.MouseDownColor2 = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(118, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.ExButton1.Name = "ExButton1"
-        Me.ExButton1.NormalBorder = System.Drawing.Color.Transparent
-        Me.ExButton1.NormalColor1 = System.Drawing.Color.DodgerBlue
-        Me.ExButton1.NormalColor2 = System.Drawing.Color.DodgerBlue
-        Me.ExButton1.ScaleImageDown = True
-        Me.ExButton1.Size = New System.Drawing.Size(534, 45)
-        Me.ExButton1.TabIndex = 3
-        Me.ExButton1.Text = "Sign in"
-        Me.ExButton1.TextCentered = True
-        Me.ExButton1.UserPainted = False
-        Me.ExButton1.UseVisualStyleBackColor = True
-        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
@@ -198,6 +199,7 @@ Partial Class Login
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "Login"
         Me.Text = "Login - Air OS"

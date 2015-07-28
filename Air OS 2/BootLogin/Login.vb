@@ -50,6 +50,11 @@ Public Class Login
         AirOS.UserFullName = name
         AirOS.UserProfile = img
         AirOS.UserPassword = pw
+
+        Dim d As New Desktop(AirOS.UserFullName )
+        d.Show()
+        d.BringToFront()
+        Close()
     End Sub
 
     Public Sub TryLogin()

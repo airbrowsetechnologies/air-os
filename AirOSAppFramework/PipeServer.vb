@@ -10,7 +10,7 @@ Imports System.Diagnostics
 ' Delegate for passing received message back to caller
 Public Delegate Sub DelegateMessage(Reply As String)
 
-Class PipeServer
+Public Class PipeServer
     Public Event PipeMessage As DelegateMessage
     Private _pipeName As String
 

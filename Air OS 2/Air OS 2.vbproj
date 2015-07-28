@@ -95,6 +95,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSystem\TaskbarItem.Designer.vb">
+      <DependentUpon>TaskbarItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AppSystem\TaskbarItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BootLogin\Booter.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,13 @@
     <Compile Include="BootLogin\Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Desktop\Desktop.Designer.vb">
+      <DependentUpon>Desktop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Desktop\Desktop.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\ABRenderer.vb" />
     <Compile Include="Helpers\AirOS.vb" />
     <Compile Include="Helpers\DWM.vb" />
     <Compile Include="Helpers\ExButton.vb">
@@ -115,7 +128,7 @@
     </Compile>
     <Compile Include="Helpers\Functions.vb" />
     <Compile Include="Helpers\MenuRenderer.vb" />
-    <Compile Include="Helpers\OSAppBase.vb" />
+    <Compile Include="AppSystem\OSAppBase.vb" />
     <Compile Include="Helpers\PipesClient.vb" />
     <Compile Include="Helpers\PipeServer.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -140,11 +153,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AppSystem\TaskbarItem.resx">
+      <DependentUpon>TaskbarItem.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BootLogin\Booter.resx">
       <DependentUpon>Booter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BootLogin\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Desktop\Desktop.resx">
+      <DependentUpon>Desktop.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\material.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -195,6 +214,7 @@
   <ItemGroup>
     <Content Include="AirBrowse.ico" />
     <Content Include="AirOS icon.ico" />
+    <None Include="Resources\applauncher.png" />
     <None Include="Resources\person.png" />
     <None Include="Resources\material.png" />
   </ItemGroup>
@@ -204,9 +224,7 @@
       <Name>AirOSAppFramework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Desktop\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

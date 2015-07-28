@@ -76,11 +76,14 @@
 
     Protected Overrides Sub OnRenderItemImage(e As ToolStripItemImageRenderEventArgs)
         'MyBase.OnRenderItemImage(e)
-        If e.Item.Selected Then
-            e.Graphics.DrawImage(Functions.ResizeImage(Functions.SetPixels(Color.DodgerBlue, e.Image), New Size(e.Item.Height - 4, e.Item.Height - 4)), New Point(2, 2))
-        Else
-            e.Graphics.DrawImage(Functions.ResizeImage(e.Image, New Size(e.Item.Height - 4, e.Item.Height - 4)), New Point(2, 2))
-        End If
+        Try
+            If e.Item.Selected Then
+                e.Graphics.DrawImage(Functions.ResizeImage(Functions.SetPixels(Color.DodgerBlue, e.Image), New Size(e.Item.Height - 4, e.Item.Height - 4)), New Point(2, 2))
+            Else
+                e.Graphics.DrawImage(Functions.ResizeImage(e.Image, New Size(e.Item.Height - 4, e.Item.Height - 4)), New Point(2, 2))
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
 

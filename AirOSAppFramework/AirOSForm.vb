@@ -7,13 +7,18 @@ Public Class AirOSForm
 
     Protected Overrides Sub OnHandleCreated(e As EventArgs)
         FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        DoubleBuffered = True
+        ShowInTaskbar = False
+        DoubleBuffered = False
         ControlContainer.Dock = DockStyle.Fill
         ControlContainer.Padding = New Padding(1)
         ControlContainer.BorderStyle = BorderStyle.None
         ControlContainer.Font = New Font("Segoe UI", 10)
         TitleBar.Invalidate()
         ControlContainer.Invalidate()
+        Refresh()
+        DoubleBuffered = True
+
+        TopMost = True
         MyBase.OnHandleCreated(e)
     End Sub
 
@@ -23,6 +28,9 @@ Public Class AirOSForm
             StartingSize = Size
         End If
     End Sub
+
+    Public MyServer As PipeServer
+    Public MyClient As pipeClient
 
 
     Private WithEvents CloseButton As New ExButton
@@ -36,9 +44,10 @@ Public Class AirOSForm
     Public Sub New()
         InitializeComponent()
         StartingSize = Size
-        If Environment.GetCommandLineArgs.Length > 0 Then
-            If Environment.GetCommandLineArgs(0) = "airos" Then
+        If Environment.CommandLine.Length > 0 Then
+            If Environment.CommandLine(0) = "airos" Then
                 IsInAirOS = True
+                TopLevel = False
             End If
         End If
         Dim exs = {MinimizeButton, MaxRestoreButton, CloseButton}
@@ -68,6 +77,42 @@ Public Class AirOSForm
 
 
         SetStyle(ControlStyles.ContainerControl, False)
+        TopMost = True
+
+        MyClient = New PipeClient
+        MyServer = New PipeServer
+        MyServer.Listen("airos_from_os_" + Myname)
+        AddHandler MyServer.PipeMessage, New DelegateMessage(AddressOf RecievedMessage)
+    End Sub
+
+    Public Myname = Application.StartupPath.Substring(Application.StartupPath.LastIndexOf("\") + 1)
+
+    Public Sub SendMessageToOS(message As String)
+        MyClient.Send(Message, "airos_to_os_" + Myname, 2000)
+    End Sub
+
+    Private Sub RecievedMessage(message As String)
+        Dim command As String = message.Split("|")(0)
+        Dim arg As String() = "".Split("")
+        Try
+            arg = message.Split("|")(1).Split("^")
+        Catch ex As Exception : End Try
+    End Sub
+
+    Public Sub ExecuteCommand(comm As String, args As String())
+        Select Case comm
+            Case "toggle"
+                If WindowState = FormWindowState.Minimized Then
+                    WindowState = FormWindowState.Normal
+                Else
+                    WindowState = FormWindowState.Minimized
+                End If
+            Case "sendtoback"
+                TopLevel = False
+            Case "close"
+
+                Me.Close()
+        End Select
     End Sub
 
     Public Property AppSize As Size
@@ -104,20 +149,31 @@ Public Class AirOSForm
             If Control.MousePosition.Y < 1 Then
                 WindowState = FormWindowState.Maximized
             End If
+            If Control.MousePosition.X < 1 Then
+                Size = New Size(My.Computer.Screen.Bounds.Width / 2 - 25, My.Computer.Screen.WorkingArea.Height - 50)
+                Location = New Point(0, 0)
+            End If
+            If Control.MousePosition.X > My.Computer.Screen.Bounds.Width - 2 Then
+                Size = New Size(My.Computer.Screen.Bounds.Width / 2 - 25, My.Computer.Screen.WorkingArea.Height - 50)
+                Location = New Point(My.Computer.Screen.Bounds.Width / 2 - 25, 0)
+            End If
         Else
             If Control.MousePosition.Y < 1 Then
                 WindowState = FormWindowState.Maximized
             End If
+
+            If Control.MousePosition.X < 1 Then
+                Size = New Size(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.WorkingArea.Height)
+                Location = New Point(0, 0)
+            End If
+            If Control.MousePosition.X > My.Computer.Screen.Bounds.Width - 2 Then
+                Size = New Size(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.WorkingArea.Height)
+                Location = New Point(My.Computer.Screen.Bounds.Width / 2, 0)
+            End If
         End If
 
-        If Control.MousePosition.X < 1 Then
-            Size = New Size(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.WorkingArea.Height)
-            Location = New Point(0, 0)
-        End If
-        If Control.MousePosition.X > My.Computer.Screen.Bounds.Width - 2 Then
-            Size = New Size(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.WorkingArea.Height)
-            Location = New Point(My.Computer.Screen.Bounds.Width / 2, 0)
-        End If
+    
+        Refresh()
 
     End Sub
 #End Region
@@ -140,7 +196,7 @@ Public Class AirOSForm
     End Sub
 
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
-        Close()
+        SendMessageToOS("close")
     End Sub
 
     Private Sub MinimizeButton_Click(sender As Object, e As EventArgs) Handles MinimizeButton.Click
@@ -168,6 +224,11 @@ Public Class AirOSForm
         Me.Name = "AirOSForm"
         Me.ResumeLayout(False)
 
+    End Sub
+
+    Private Sub AirOSForm_Load(sender As Object, e As EventArgs) Handles MyBase.Shown
+        ' TopLevel = False
+        'SendMessageToOS("putindt")
     End Sub
 End Class
 
