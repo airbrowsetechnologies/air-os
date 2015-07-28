@@ -26,13 +26,13 @@ Partial Class TaskbarItem
         '
         'TaskbarItem
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.Transparent
         Me.BackgroundImage = Global.Air_OS2.My.Resources.Resources.AirOS_icon
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.DoubleBuffered = True
         Me.Name = "TaskbarItem"
-        Me.Size = New System.Drawing.Size(45, 45)
+        Me.Size = New System.Drawing.Size(35, 35)
         Me.ResumeLayout(False)
 
     End Sub

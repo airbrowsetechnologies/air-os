@@ -33,9 +33,14 @@ Public Class Desktop
     End Sub
 
     Private Sub Desktop_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        Dim a As New OSAppBase("AirOSAppTest")
+   
+    End Sub
+
+    Public Sub StartApp(appname As String)
+        Dim a As New OSAppBase(appname)
         RunningApps.Add(a)
     End Sub
+
 
     <DllImport("user32.dll")> _
     Private Shared Function SetParent(hWndChild As IntPtr, hWndNewParent As IntPtr) As IntPtr
