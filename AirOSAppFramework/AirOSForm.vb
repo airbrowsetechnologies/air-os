@@ -14,6 +14,7 @@ Public Class AirOSForm
         TitleBar.Invalidate()
         ControlContainer.Invalidate()
         MyBase.OnHandleCreated(e)
+
     End Sub
 
 
