@@ -96,6 +96,9 @@ Public Class AirOSForm
         Dim arg As String() = "".Split("")
         Try
             arg = message.Split("|")(1).Split("^")
+            Me.BeginInvoke(Sub()
+                               ExecuteCommand(command, arg)
+                           End Sub)
         Catch ex As Exception : End Try
     End Sub
 
@@ -172,7 +175,7 @@ Public Class AirOSForm
             End If
         End If
 
-    
+
         Refresh()
 
     End Sub

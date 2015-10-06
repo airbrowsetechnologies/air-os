@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports System.Globalization
 
 Public Class Desktop
 
@@ -6,6 +7,20 @@ Public Class Desktop
         InitializeComponent()
 
 
+    End Sub
+
+
+
+
+    Private Sub Desktop_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        WindowState = FormWindowState.Maximized
+
+        Dim o = New OSAppBase("AirOSAppTest")
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        time.Text = DateTime.Now.ToShortTimeString ' DateTime.Now.Hour.ToString + ":" + DateTime.Now.Minute.ToString
+        pm.Text = DateTime.Now.ToString("tt", CultureInfo.InvariantCulture)
     End Sub
 
     Public RunningApps As New List(Of OSAppBase)
@@ -33,7 +48,7 @@ Public Class Desktop
     End Sub
 
     Private Sub Desktop_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-   
+
     End Sub
 
     Public Sub StartApp(appname As String)

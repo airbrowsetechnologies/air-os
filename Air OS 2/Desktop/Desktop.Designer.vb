@@ -23,126 +23,170 @@ Partial Class Desktop
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.time = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.pm = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.MenuPanel = New System.Windows.Forms.Panel()
         Me.AppBar = New System.Windows.Forms.FlowLayoutPanel()
-        Me.OSToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.OSBtn = New System.Windows.Forms.PictureBox()
-        Me.AppsBtn = New System.Windows.Forms.PictureBox()
-        Me.Time = New System.Windows.Forms.Label()
-        Me.OSBar = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.unamelab = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Content = New System.Windows.Forms.Panel()
-        CType(Me.OSBtn, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AppsBtn, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.OSBar.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.MenuPanel.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(34, 584)
+        Me.Panel1.TabIndex = 0
+        '
+        'time
+        '
+        Me.time.BackColor = System.Drawing.Color.Transparent
+        Me.time.Font = New System.Drawing.Font("Segoe UI", 45.0!)
+        Me.time.ForeColor = System.Drawing.Color.White
+        Me.time.Location = New System.Drawing.Point(8, 8)
+        Me.time.Margin = New System.Windows.Forms.Padding(8)
+        Me.time.Name = "time"
+        Me.time.Size = New System.Drawing.Size(177, 84)
+        Me.time.TabIndex = 1
+        Me.time.Text = "12:00"
+        Me.time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.pm)
+        Me.Panel2.Controls.Add(Me.time)
+        Me.Panel2.Location = New System.Drawing.Point(786, 473)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(250, 100)
+        Me.Panel2.TabIndex = 2
+        '
+        'pm
+        '
+        Me.pm.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pm.BackColor = System.Drawing.Color.Transparent
+        Me.pm.Font = New System.Drawing.Font("Segoe UI", 25.0!)
+        Me.pm.ForeColor = System.Drawing.Color.White
+        Me.pm.Location = New System.Drawing.Point(165, 27)
+        Me.pm.Margin = New System.Windows.Forms.Padding(8)
+        Me.pm.Name = "pm"
+        Me.pm.Size = New System.Drawing.Size(77, 65)
+        Me.pm.TabIndex = 2
+        Me.pm.Text = "PM"
+        Me.pm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
+        '
+        'MenuPanel
+        '
+        Me.MenuPanel.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.MenuPanel.Controls.Add(Me.AppBar)
+        Me.MenuPanel.Controls.Add(Me.Panel3)
+        Me.MenuPanel.Controls.Add(Me.Panel4)
+        Me.MenuPanel.Location = New System.Drawing.Point(34, 0)
+        Me.MenuPanel.Name = "MenuPanel"
+        Me.MenuPanel.Padding = New System.Windows.Forms.Padding(1)
+        Me.MenuPanel.Size = New System.Drawing.Size(234, 309)
+        Me.MenuPanel.TabIndex = 3
         '
         'AppBar
         '
-        Me.AppBar.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.AppBar.Dock = System.Windows.Forms.DockStyle.Left
-        Me.AppBar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.AppBar.Location = New System.Drawing.Point(0, 50)
+        Me.AppBar.BackColor = System.Drawing.Color.White
+        Me.AppBar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.AppBar.Location = New System.Drawing.Point(1, 29)
+        Me.AppBar.Margin = New System.Windows.Forms.Padding(0)
         Me.AppBar.Name = "AppBar"
-        Me.AppBar.Size = New System.Drawing.Size(50, 545)
-        Me.AppBar.TabIndex = 1
-        Me.AppBar.WrapContents = False
+        Me.AppBar.Size = New System.Drawing.Size(232, 251)
+        Me.AppBar.TabIndex = 4
         '
-        'OSToolTip
+        'Panel3
         '
-        Me.OSToolTip.BackColor = System.Drawing.Color.White
-        Me.OSToolTip.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.Controls.Add(Me.unamelab)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel3.Location = New System.Drawing.Point(1, 280)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(232, 28)
+        Me.Panel3.TabIndex = 6
         '
-        'OSBtn
+        'unamelab
         '
-        Me.OSBtn.BackColor = System.Drawing.Color.Transparent
-        Me.OSBtn.Dock = System.Windows.Forms.DockStyle.Left
-        Me.OSBtn.Image = Global.Air_OS2.My.Resources.Resources.AirOS_icon
-        Me.OSBtn.Location = New System.Drawing.Point(4, 4)
-        Me.OSBtn.Name = "OSBtn"
-        Me.OSBtn.Padding = New System.Windows.Forms.Padding(10)
-        Me.OSBtn.Size = New System.Drawing.Size(56, 42)
-        Me.OSBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.OSBtn.TabIndex = 0
-        Me.OSBtn.TabStop = False
+        Me.unamelab.Dock = System.Windows.Forms.DockStyle.Right
+        Me.unamelab.Font = New System.Drawing.Font("Open Sans", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.unamelab.ForeColor = System.Drawing.Color.Gray
+        Me.unamelab.Location = New System.Drawing.Point(26, 0)
+        Me.unamelab.Name = "unamelab"
+        Me.unamelab.Size = New System.Drawing.Size(206, 28)
+        Me.unamelab.TabIndex = 0
+        Me.unamelab.Text = "USERNAME"
+        Me.unamelab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'AppsBtn
+        'Panel4
         '
-        Me.AppsBtn.BackColor = System.Drawing.Color.Transparent
-        Me.AppsBtn.Dock = System.Windows.Forms.DockStyle.Left
-        Me.AppsBtn.Image = Global.Air_OS2.My.Resources.Resources.applauncher
-        Me.AppsBtn.Location = New System.Drawing.Point(60, 4)
-        Me.AppsBtn.Margin = New System.Windows.Forms.Padding(5)
-        Me.AppsBtn.Name = "AppsBtn"
-        Me.AppsBtn.Padding = New System.Windows.Forms.Padding(10)
-        Me.AppsBtn.Size = New System.Drawing.Size(56, 42)
-        Me.AppsBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.AppsBtn.TabIndex = 1
-        Me.AppsBtn.TabStop = False
-        '
-        'Time
-        '
-        Me.Time.BackColor = System.Drawing.Color.Transparent
-        Me.Time.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Time.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.Time.Location = New System.Drawing.Point(833, 4)
-        Me.Time.Name = "Time"
-        Me.Time.Size = New System.Drawing.Size(96, 42)
-        Me.Time.TabIndex = 2
-        Me.Time.Text = "8:00 AM" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "1/1/1970" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.Time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'OSBar
-        '
-        Me.OSBar.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.OSBar.Controls.Add(Me.Time)
-        Me.OSBar.Controls.Add(Me.AppsBtn)
-        Me.OSBar.Controls.Add(Me.OSBtn)
-        Me.OSBar.Dock = System.Windows.Forms.DockStyle.Top
-        Me.OSBar.ForeColor = System.Drawing.Color.White
-        Me.OSBar.Location = New System.Drawing.Point(0, 0)
-        Me.OSBar.Name = "OSBar"
-        Me.OSBar.Padding = New System.Windows.Forms.Padding(4)
-        Me.OSBar.Size = New System.Drawing.Size(933, 50)
-        Me.OSBar.TabIndex = 2
+        Me.Panel4.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel4.Location = New System.Drawing.Point(1, 1)
+        Me.Panel4.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.Panel4.Size = New System.Drawing.Size(232, 28)
+        Me.Panel4.TabIndex = 5
         '
         'Content
         '
         Me.Content.BackColor = System.Drawing.Color.Transparent
-        Me.Content.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Content.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Content.Location = New System.Drawing.Point(50, 50)
-        Me.Content.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Content.Location = New System.Drawing.Point(34, 0)
         Me.Content.Name = "Content"
-        Me.Content.Size = New System.Drawing.Size(883, 545)
-        Me.Content.TabIndex = 0
+        Me.Content.Size = New System.Drawing.Size(1014, 584)
+        Me.Content.TabIndex = 4
         '
         'Desktop
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackgroundImage = Global.Air_OS2.My.Resources.Resources.material
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(933, 595)
+        Me.ClientSize = New System.Drawing.Size(1048, 584)
+        Me.Controls.Add(Me.MenuPanel)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Content)
-        Me.Controls.Add(Me.AppBar)
-        Me.Controls.Add(Me.OSBar)
+        Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
-        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "Desktop"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Desktop"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.OSBtn, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AppsBtn, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.OSBar.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.MenuPanel.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents time As System.Windows.Forms.Label
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents pm As System.Windows.Forms.Label
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents MenuPanel As System.Windows.Forms.Panel
     Friend WithEvents AppBar As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents OSToolTip As System.Windows.Forms.ToolTip
-    Friend WithEvents OSBtn As System.Windows.Forms.PictureBox
-    Friend WithEvents AppsBtn As System.Windows.Forms.PictureBox
-    Friend WithEvents Time As System.Windows.Forms.Label
-    Friend WithEvents OSBar As System.Windows.Forms.Panel
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents unamelab As System.Windows.Forms.Label
+    Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents Content As System.Windows.Forms.Panel
 End Class

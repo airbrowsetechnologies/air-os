@@ -13,8 +13,9 @@ Public Class OSAppBase
     Public Sub New(path As String)
         MyClient = New PipeClient
         MyServer = New PipeServer
-        MyServer.Listen("airos_to_os_" + path)
         AddHandler MyServer.PipeMessage, New DelegateMessage(AddressOf RecievedMessage)
+        MyServer.Listen("airos_to_os_" + path)
+
 
         MyName = path
 
@@ -46,11 +47,11 @@ Public Class OSAppBase
 
         Desktop.GetDesktopHandle.AppBar.Controls.Remove(MyTBItem)
 
-        If MyProcess.Responding Then
-            MyProcess.CloseMainWindow()
-        Else
-            MyProcess.Kill()
-        End If
+        'If MyProcess.Responding Then
+        '    MyProcess.CloseMainWindow()
+        'Else
+        MyProcess.Kill()
+        'End If
         MyProcess.Kill()
         SendMessage("close")
         MyProcess.Dispose()
@@ -71,21 +72,27 @@ Public Class OSAppBase
         Try
             arg = message.Split("|")(1).Split("^")
         Catch ex As Exception : End Try
-        Desktop.GetDesktopHandle.Invoke(MyExecuteCommDel, command, arg)
+        Desktop.GetDesktopHandle.BeginInvoke(Sub(comm, args)
+                                                 ExecuteCommand(comm, arg)
+                                             End Sub, command, arg)
     End Sub
 
     Public Delegate Sub ExecuteCommandDel(comm As String, args As String())
     Public MyExecuteCommDel = New ExecuteCommandDel(AddressOf ExecuteCommand)
 
     Public Sub ExecuteCommand(comm As String, args As String())
+        MsgBox(comm)
         ' MsgBox("Message : " + comm)
         Select Case comm.ToLower
             Case "close"
-                Dispose()
+                Desktop.GetDesktopHandle.BeginInvoke(Sub()
+                                                         Dispose()
+                                                     End Sub)
+
             Case "restart"
                 RestartApp()
             Case "putindt"
-                'SetParent(MyProcess.MainWindowHandle, Desktop.GetDesktopHandle.Handle)
+                SetParent(MyProcess.MainWindowHandle, Desktop.GetDesktopHandle.Handle)
 
         End Select
     End Sub
