@@ -20,6 +20,7 @@ Public Class AirOSForm
 
         TopMost = True
         MyBase.OnHandleCreated(e)
+
     End Sub
 
     Protected Overrides Sub OnSizeChanged(e As EventArgs)
